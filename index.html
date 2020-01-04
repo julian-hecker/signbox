@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Box</title>
+    <style>
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    height: 100%;
+}
+
+.wrapper {
+    display: flex; justify-content: center; align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    perspective: 600px;
+    background-color: #006456;
+    color: #fff;
+    overflow: hidden;
+}
+
+.block {
+    --x-length: 4in;
+    --y-length: 4in;
+    --z-length: 0.5in;
+
+    width: var(--x-length);
+    height: var(--y-length);
+    position: absolute;
+    transform-style: preserve-3d;
+    animation: rotate 3s infinite;
+}
+
+
+.side {
+    display: block;
+    position: absolute;
+    background-color: white;
+    border: .25rem solid black;
+    color: white;
+    font-family: monospace;
+    font-size: 5rem;
+    font-weight: bolder;
+    opacity: .9;
+    text-align: center;
+    
+    background-image: url(https://www.stockvault.net/data/2019/06/09/266017/preview16.jpg);
+    background-size: cover;
+
+}
+
+.front {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .5rem;
+}
+
+.front, .back {
+    width: var(--x-length);
+    height: var(--y-length);
+}
+
+.left, .right {
+    width: var(--z-length);
+    height: var(--y-length);
+    left: calc(0.5 * (var(--x-length) - var(--z-length)));
+}
+
+.top, .bottom {
+    width: var(--x-length);
+    height:  var(--z-length);
+    top: calc(.5 *  (var(--y-length) - var(--z-length)));
+}
+
+.front {
+    transform: rotateY(0deg) translateZ(calc(0.5 * var(--z-length)));
+}
+.back {
+    transform: rotateX(180deg) translateZ(calc(0.5 * var(--z-length)));
+}
+.right {
+    transform: rotateY(90deg) translateZ(calc(0.5 * var(--x-length)));
+}
+.left {
+    transform: rotateY(-90deg) translateZ(calc(0.5 * var(--x-length)));
+}
+.top {
+    transform: rotateX(90deg) translateZ(calc(0.5 * var(--y-length)));
+}
+.bottom {
+    transform: rotateX( -90deg ) translateZ(calc(0.5 * var(--y-length)));
+}
+
+
+@keyframes rotate {
+    0% {
+        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1); background: #fc0;
+    }
+    50% {
+        transform: rotateX(180deg) rotateY(180deg) rotateZ(180deg) scale(0.5); }
+    100% {
+        transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg) scale(1);
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="block">
+            <div class="side front">
+                <div class="text">
+                    <div>You miss all the shots you don't take</div>
+                </div>
+            </div>
+            <div class="side right"></div>
+            <div class="side back"></div>
+            <div class="side left"></div>
+            <div class="side top"></div>
+            <div class="side bottom"></div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+<!-- 
+
+    https://codepen.io/jordizle/pen/haIdo?editors=0100
+
+    https://3dtransforms.desandro.com/cube
+
+    http://www.nonlinear.nyc/tools/scripts/3dtransforms/docs/rectangular-prism.html
+    
+    https://codepen.io/invincibleking77/pen/emMegN
+
+ -->
