@@ -21,51 +21,64 @@ body {
 }
 
 .wrapper {
-    display: flex; justify-content: center; align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 100%;
     position: relative;
-    perspective: 600px;
+    perspective: 10in;q
     background-color: #006456;
     color: #fff;
     overflow: hidden;
 }
 
 .block {
+    /* Dimensions */
     --x-length: 4in;
     --y-length: 4in;
-    --z-length: 0.5in;
+    --z-length: 2in;
 
     width: var(--x-length);
     height: var(--y-length);
     position: absolute;
     transform-style: preserve-3d;
-    animation: rotate 3s infinite;
+    animation: rotate 7s infinite;
 }
 
 
 .side {
     display: block;
     position: absolute;
-    background-color: white;
-    border: .25rem solid black;
-    color: white;
-    font-family: monospace;
-    font-size: 5rem;
-    font-weight: bolder;
-    opacity: .9;
-    text-align: center;
     
+    background-color: brown; /* Fallback Color */
+    /* Wood Type */
     background-image: url(https://www.stockvault.net/data/2019/06/09/266017/preview16.jpg);
     background-size: cover;
-
+    border: .25rem solid black;
+    text-align: center;
 }
 
 .front {
     display: flex;
     justify-content: center;
-    align-items: center;
-    padding: .5rem;
+    align-items: flex-start;
+    /* Spacing */
+    padding: .25in;
+}
+
+.text {
+    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    /*min-height: 100%; /*temporary to see size*/
+    border: 1px solid black;
+    /* Font Properties */
+    font-family: monospace;
+    font-size: .4in; /* Use JS to match sizes */
+    font-weight: bolder;
+    overflow: hidden;
+    text-align: left;
 }
 
 .front, .back {
@@ -106,14 +119,46 @@ body {
 
 
 @keyframes rotate {
-    0% {
-        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1); background: #fc0;
+    0%, 100% {
+        transform: 
+            translateX(0px) 
+            translateY(0px) 
+            translateZ(0px) 
+            rotateX(0deg) 
+            rotateY(0deg) 
+            rotateZ(0deg) 
+            scale(1.0);
+    }
+    25% {
+        transform: 
+            translateX(1in) 
+            translateY(0in) 
+            translateZ(0in) 
+            rotateX(-15deg) 
+            rotateY(-45deg) 
+            rotateZ(0deg) 
+            scaleY(1.0);
     }
     50% {
-        transform: rotateX(180deg) rotateY(180deg) rotateZ(180deg) scale(0.5); }
-    100% {
-        transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg) scale(1);
+        transform: 
+            translateX(-1in) 
+            translateY(-1in) 
+            translateZ(0in) 
+            rotateX(15deg) 
+            rotateY(45deg) 
+            rotateZ(0deg) 
+            scale(1.0);
     }
+    /*75% {
+        transform: 
+            translateX(0in)
+            translateY(0in)
+            translateZ(-2in)
+            rotateX(-20deg)
+            rotateY(-215deg)
+            rotateZ(0deg)
+            scale(1.0);
+    }*/
 }
 
 
@@ -123,8 +168,8 @@ body {
     <div class="wrapper">
         <div class="block">
             <div class="side front">
-                <div class="text">
-                    <div>You miss all the shots you don't take</div>
+                <div class="text" contenteditable="true">
+                    You miss all the shots you don't take
                 </div>
             </div>
             <div class="side right"></div>
@@ -151,9 +196,10 @@ body {
 
 
     To do: 
+    - Create CSS Box Mixins
     - SVG filters or borders
     - Text editing capabilities
-    - Adding images
+    - Adding images, float svgs
     - Editor GUI
     
     https://www.smashingmagazine.com/2015/05/why-the-svg-filter-is-awesome/
