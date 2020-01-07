@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Blockify 3D</title>
+    <style>
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    height: 100%;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    perspective: 10in;
+    background-color: #006456;
+    color: #fff;
+    overflow: hidden;
+}
+
+.block {
+    /* Dimensions */
+    --x-length: 4in;
+    --y-length: 4in;
+    --z-length: 2in;
+
+    width: var(--x-length);
+    height: var(--y-length);
+    position: absolute;
+    transform-style: preserve-3d;
+    animation: rotate 7s infinite;
+}
+
+.side {
+    display: block;
+    position: absolute;
+    background-color: brown;
+    border: .25rem solid black;
+    opacity: .5;
+}
+
+.front, .back {
+    width: var(--x-length);
+    height: var(--y-length);
+}
+
+.left, .right {
+    width: var(--z-length);
+    height: var(--y-length);
+    left: calc(0.5 * (var(--x-length) - var(--z-length)));
+}
+
+.top, .bottom {
+    width: var(--x-length);
+    height:  var(--z-length);
+    top: calc(.5 *  (var(--y-length) - var(--z-length)));
+}
+
+.front {
+    transform: rotateY(0deg) translateZ(calc(0.5 * var(--z-length)));
+}
+.back {
+    transform: rotateX(180deg) translateZ(calc(0.5 * var(--z-length)));
+}
+.right {
+    transform: rotateY(90deg) translateZ(calc(0.5 * var(--x-length)));
+}
+.left {
+    transform: rotateY(-90deg) translateZ(calc(0.5 * var(--x-length)));
+}
+.top {
+    transform: rotateX(90deg) translateZ(calc(0.5 * var(--y-length)));
+}
+.bottom {
+    transform: rotateX( -90deg ) translateZ(calc(0.5 * var(--y-length)));
+}
+
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="block">
+            <div class="side front">    </div>
+            <div class="side right">    </div>
+            <div class="side back">     </div>
+            <div class="side left">     </div>
+            <div class="side top">      </div>
+            <div class="side bottom">   </div>
+        </div>
+    </div>
+</body>
+</html>
